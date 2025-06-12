@@ -1,4 +1,4 @@
-# 🔐 Web CTF MCP (My Cyber Playground)
+# 🔐 MCP Web CTF (My Cyber Playground)
 
 <div align="center">
 
