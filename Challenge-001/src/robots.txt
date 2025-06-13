@@ -1,0 +1,30 @@
+User-agent: *
+Disallow: /admin/
+Disallow: /backup/
+Disallow: /.env
+Disallow: /config/
+Disallow: /api/admin/
+Allow: /
+Allow: /api/secret.json
+
+# Development endpoints (should be removed in production)
+Disallow: /debug/
+Disallow: /test/
+Disallow: /dev/
+
+# Backup files (security risk!)
+Disallow: /*.bak
+Disallow: /*.backup
+Disallow: /*.sql
+Disallow: /*.dump
+
+# Sensitive configuration files
+Disallow: /wp-config.php
+Disallow: /.htaccess
+Disallow: /config.php
+
+# Hidden flag hint: Check the API endpoints!
+# Sitemap: https://MCP-SecureBank.com/sitemap.xml
+
+# CTF Note: This robots.txt file contains hints about discoverable endpoints
+# Try accessing /api/secret.json for additional information

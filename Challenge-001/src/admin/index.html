@@ -1,0 +1,343 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>403 Forbidden</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+            background-color: #f5f5f5;
+        }
+        .error-container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        h1 { color: #d32f2f; }
+        p { color: #666; }
+    </style>
+</head>
+<body>
+    <div class="error-container">
+        <h1>403 Forbidden</h1>
+        <p>Access denied. Admin panel is restricted.</p>
+        <p>You do not have permission to access this resource.</p>
+         This directory exists but access is forbidden -->
+        <!-- The real flag is hidden in the source code comments 
+        <a href="../index.html">Return to Home</a>
+    </div>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - MCP-SecureBank</title>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        .admin-panel {
+            background: white;
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-top: 2rem;
+        }
+        .admin-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        .stat-card {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #4a90e2;
+        }
+        .admin-actions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        .action-card {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 10px;
+            border: 1px solid #e1e5e9;
+        }
+        .action-card h4 {
+            color: #4a90e2;
+            margin-bottom: 1rem;
+        }
+        .logs {
+            background: #1a1a1a;
+            color: #00ff00;
+            padding: 1rem;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            max-height: 300px;
+            overflow-y: auto;
+            margin-top: 1rem;
+        }
+        .warning {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            color: #856404;
+            padding: 1rem;
+            border-radius: 5px;
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>MCP-SecureBank - Admin Panel</h1>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Back to Home</a></li>
+                    <li><a href="../login.html">Logout</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="admin-panel">
+                <h2>Administrator Dashboard</h2>
+                <div class="warning">
+                    <strong>Warning:</strong> You are accessing the administrative panel. All actions are logged.
+                    <!-- Admin Flag: MCP{4dm1n_p4n3l_4cc3ss_gr4nt3d} -->
+                </div>
+                
+                <div class="admin-stats">
+                    <div class="stat-card">
+                        <div class="stat-number">1,247</div>
+                        <div>Active Users</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">$2.4M</div>
+                        <div>Total Deposits</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">98.7%</div>
+                        <div>System Uptime</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">42</div>
+                        <div>Failed Logins</div>
+                    </div>
+                </div>
+
+                <div class="admin-actions">
+                    <div class="action-card">
+                        <h4>User Management</h4>
+                        <p>Manage user accounts and permissions</p>
+                        <button onclick="manageUsers()">Manage Users</button>
+                    </div>
+                    
+                    <div class="action-card">
+                        <h4>Transaction Monitor</h4>
+                        <p>View and monitor all transactions</p>
+                        <button onclick="viewTransactions()">View Transactions</button>
+                    </div>
+                    
+                    <div class="action-card">
+                        <h4>System Settings</h4>
+                        <p>Configure system parameters</p>
+                        <button onclick="systemSettings()">Settings</button>
+                    </div>
+                    
+                    <div class="action-card">
+                        <h4>Reports</h4>
+                        <p>Generate financial and security reports</p>
+                        <button onclick="generateReports()">Generate</button>
+                    </div>
+                    
+                    <div class="action-card">
+                        <h4>Security Logs</h4>
+                        <p>Review security events and alerts</p>
+                        <button onclick="showSecurityLogs()">View Logs</button>
+                    </div>
+                    
+                    <div class="action-card">
+                        <h4>Database Tools</h4>
+                        <p>Database maintenance and backup</p>
+                        <button onclick="databaseTools()">DB Tools</button>
+                    </div>
+                </div>
+
+                <div id="actionResults" style="margin-top: 2rem;"></div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 MCP-SecureBank Admin Panel. Restricted Access.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Check if user is logged in (has the auth cookie)
+        function checkAdminAuth() {
+            const authCookie = document.cookie
+                .split('; ')
+                .find(row => row.startsWith('auth='));
+            
+            if (!authCookie || !authCookie.includes('MCP{c00k13_fl4g_f0und_y0u}')) {
+                alert('Unauthorized access! Please log in first.');
+                window.location.href = '../login.html';
+                return false;
+            }
+            return true;
+        }
+
+        // Admin functions
+        function manageUsers() {
+            if (!checkAdminAuth()) return;
+            
+            const results = document.getElementById('actionResults');
+            results.innerHTML = `
+                <h3>User Management</h3>
+                <div class="logs">
+[2024-06-06 10:30:15] Loading user database...
+[2024-06-06 10:30:16] Found 1,247 active users
+[2024-06-06 10:30:16] Found 23 inactive users
+[2024-06-06 10:30:17] Admin users: 3
+[2024-06-06 10:30:17] Regular users: 1,244
+[2024-06-06 10:30:18] Recent signups: 15 (last 7 days)
+[2024-06-06 10:30:18] Flagged accounts: 2 (suspicious activity)
+[2024-06-06 10:30:19] User management system ready
+                </div>
+            `;
+        }
+
+        function viewTransactions() {
+            if (!checkAdminAuth()) return;
+            
+            const results = document.getElementById('actionResults');
+            results.innerHTML = `
+                <h3>Transaction Monitor</h3>
+                <div class="logs">
+[2024-06-06 10:31:01] Connecting to transaction database...
+[2024-06-06 10:31:02] Loading recent transactions...
+[2024-06-06 10:31:03] Today's transactions: 1,832
+[2024-06-06 10:31:03] Total amount: $4,567,890.23
+[2024-06-06 10:31:04] Largest transaction: $125,000.00
+[2024-06-06 10:31:04] Average transaction: $2,492.34
+[2024-06-06 10:31:05] Flagged transactions: 3 (pending review)
+[2024-06-06 10:31:05] Failed transactions: 12
+[2024-06-06 10:31:06] Transaction monitor ready
+                </div>
+            `;
+        }
+
+        function systemSettings() {
+            if (!checkAdminAuth()) return;
+            
+            const results = document.getElementById('actionResults');
+            results.innerHTML = `
+                <h3>🔧 System Settings</h3>
+                <div class="logs">
+[2024-06-06 10:32:10] Loading system configuration...
+[2024-06-06 10:32:11] Database status: ONLINE
+[2024-06-06 10:32:11] Backup status: ENABLED (daily at 2:00 AM)
+[2024-06-06 10:32:12] Security level: HIGH
+[2024-06-06 10:32:12] Maintenance window: Sunday 1:00-3:00 AM
+[2024-06-06 10:32:13] API rate limiting: ENABLED
+[2024-06-06 10:32:13] Fraud detection: ACTIVE
+[2024-06-06 10:32:14] System configuration loaded
+                </div>
+            `;
+        }
+
+        function generateReports() {
+            if (!checkAdminAuth()) return;
+            
+            const results = document.getElementById('actionResults');
+            results.innerHTML = `
+                <h3>Financial Reports</h3>
+                <div class="logs">
+[2024-06-06 10:33:20] Generating financial reports...
+[2024-06-06 10:33:21] Daily report: COMPLETE
+[2024-06-06 10:33:22] Weekly summary: IN PROGRESS...
+[2024-06-06 10:33:24] Monthly analysis: QUEUED
+[2024-06-06 10:33:24] Compliance report: SCHEDULED
+[2024-06-06 10:33:25] Audit trail: AVAILABLE
+[2024-06-06 10:33:25] Performance metrics: UPDATED
+[2024-06-06 10:33:26] Reports ready for download
+                </div>
+            `;
+        }
+
+        function showSecurityLogs() {
+            if (!checkAdminAuth()) return;
+            
+            const results = document.getElementById('actionResults');
+            results.innerHTML = `
+                <h3>Security Logs</h3>
+                <div class="logs">
+[2024-06-06 09:45:12] Failed login attempt: 192.168.1.100
+[2024-06-06 09:47:23] Admin panel access: 192.168.1.50 (YOU)
+[2024-06-06 09:52:34] Suspicious API calls blocked: 203.0.113.45
+[2024-06-06 10:05:18] Password reset request: user@example.com
+[2024-06-06 10:12:45] Multiple failed logins: 198.51.100.78 (BLOCKED)
+[2024-06-06 10:20:33] New device login: 172.16.0.25
+[2024-06-06 10:28:12] Admin action logged: User management accessed
+[2024-06-06 10:30:45] Session timeout: user_id_12345
+                </div>
+            `;
+        }
+
+        function databaseTools() {
+            if (!checkAdminAuth()) return;
+            
+            const results = document.getElementById('actionResults');
+            results.innerHTML = `
+                <h3>🗄️ Database Tools</h3>
+                <div class="logs">
+[2024-06-06 10:35:10] Connecting to database cluster...
+[2024-06-06 10:35:11] Database health check: PASSED
+[2024-06-06 10:35:12] Last backup: 2024-06-06 02:00:00 (SUCCESS)
+[2024-06-06 10:35:13] Disk usage: 67% of 2TB
+[2024-06-06 10:35:13] Active connections: 45/100
+[2024-06-06 10:35:14] Query performance: OPTIMAL
+[2024-06-06 10:35:14] Replication lag: 0.2ms
+[2024-06-06 10:35:15] Database maintenance tools ready
+[2024-06-06 10:35:15] Hidden flag in DB logs: Check developer console!
+                </div>
+            `;
+            
+            // Hidden console message for curious users
+            console.log("💻 Database Debug Mode Activated!");
+            console.log("Secret database flag: MCP{d4t4b4s3_4cc3ss_l0g_fl4g}");
+        }
+
+        // Check authentication on page load
+        window.addEventListener('load', function() {
+            if (!checkAdminAuth()) return;
+            
+            console.log("💻 Admin Panel Loaded Successfully");
+            console.log("💻 Try interacting with different admin functions!");
+            console.log("💻 Some functions might reveal additional information...");
+        });
+    </script>
+</body>
+</html>

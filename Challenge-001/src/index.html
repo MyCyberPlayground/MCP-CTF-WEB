@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MCP-SecureBank - Online Banking Portal</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Flag 1: MCP{h1dd3n_1n_c0mm3nts_f0und} -->
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>MCP-SecureBank</h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <section class="hero">
+                <h2>Welcome to MCP-SecureBank</h2>
+                <p>Your trusted partner for secure online banking</p>
+                <button onclick="showAlert()">Learn More</button>
+            </section>
+
+            <section class="features">
+                <h3>Our Services</h3>
+                <div class="feature-grid">
+                    <div class="feature">
+                        <h4>Online Banking</h4>
+                        <p>Access your accounts 24/7</p>
+                    </div>
+                    <div class="feature">
+                        <h4>Mobile Banking</h4>
+                        <p>Bank on the go with our app</p>
+                    </div>
+                    <div class="feature">
+                        <h4>Investment Services</h4>
+                        <p>Grow your wealth with us</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 MCP-SecureBank. All rights reserved.</p>
+            <p><a href="admin/">Admin Panel</a> | <a href="robots.txt">Site Map</a></p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Development mode flag for testing
+        var devMode = true;
+        var secretKey = "MCP{cl13nt_s1d3_s3cr3ts_3xp0s3d}"; // Flag 2
+        
+        if (devMode) {
+            console.log("Development mode active");
+            console.log("Debug info available in localStorage");
+            localStorage.setItem('debug_info', 'Flag hidden in console logs');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - MCP-SecureBank</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .dashboard {
+            background: white;
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        .account-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        .account-card {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 10px;
+            border-left: 4px solid #4a90e2;
+        }
+        .balance {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #4a90e2;
+            margin: 1rem 0;
+        }
+        .transactions {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 10px;
+            margin-top: 2rem;
+        }
+        .transaction-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid #e1e5e9;
+        }
+        .transaction-item:last-child {
+            border-bottom: none;
+        }
+        .amount.positive {
+            color: #28a745;
+        }
+        .amount.negative {
+            color: #dc3545;
+        }
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        .action-btn {
+            background: linear-gradient(45deg, #4a90e2, #357abd);
+            color: white;
+            border: none;
+            padding: 1rem;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        .action-btn:hover {
+            transform: translateY(-2px);
+        }
+        .welcome-message {
+            background: linear-gradient(45deg, #28a745, #20c997);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>MCP-SecureBank</h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="dashboard.html">Dashboard</a></li>
+                    <li><a href="admin/">Admin</a></li>
+                    <li><a href="#" onclick="logout()">Logout</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="dashboard">
+                <div class="welcome-message">
+                    <h2>Welcome back, Admin!</h2>
+                    <p>You have successfully logged in. Your session is secure.</p>
+                    <!-- Dashboard Flag: MCP{d4shb04rd_4cc3ss_c0mpl3t3} -->
+                </div>
+
+                <h3>Account Overview</h3>
+                <div class="account-grid">
+                    <div class="account-card">
+                        <h4>Checking Account</h4>
+                        <div class="balance">$12,547.83</div>
+                        <p>Account: ****1234</p>
+                        <p>Available Balance</p>
+                    </div>
+                    
+                    <div class="account-card">
+                        <h4>Savings Account</h4>
+                        <div class="balance">$45,821.92</div>
+                        <p>Account: ****5678</p>
+                        <p>High-Yield Savings</p>
+                    </div>
+                    
+                    <div class="account-card">
+                        <h4>Investment Account</h4>
+                        <div class="balance">$128,934.56</div>
+                        <p>Account: ****9012</p>
+                        <p>Portfolio Value</p>
+                    </div>
+                </div>
+
+                <h3>Quick Actions</h3>
+                <div class="quick-actions">
+                    <button class="action-btn" onclick="transfer()">Transfer Money</button>
+                    <button class="action-btn" onclick="payBills()">Pay Bills</button>
+                    <button class="action-btn" onclick="checkCredit()">Check Credit Score</button>
+                    <button class="action-btn" onclick="support()">Contact Support</button>
+                </div>
+
+                <div class="transactions">
+                    <h3>Recent Transactions</h3>
+                    <div class="transaction-item">
+                        <div>
+                            <strong>Coffee Shop Payment</strong>
+                            <div style="font-size: 0.9rem; color: #666;">June 5, 2024</div>
+                        </div>
+                        <div class="amount negative">-$4.75</div>
+                    </div>
+                    
+                    <div class="transaction-item">
+                        <div>
+                            <strong>Salary Deposit</strong>
+                            <div style="font-size: 0.9rem; color: #666;">June 1, 2024</div>
+                        </div>
+                        <div class="amount positive">+$3,500.00</div>
+                    </div>
+                    
+                    <div class="transaction-item">
+                        <div>
+                            <strong>Electric Bill</strong>
+                            <div style="font-size: 0.9rem; color: #666;">May 30, 2024</div>
+                        </div>
+                        <div class="amount negative">-$127.45</div>
+                    </div>
+                    
+                    <div class="transaction-item">
+                        <div>
+                            <strong>Investment Return</strong>
+                            <div style="font-size: 0.9rem; color: #666;">May 28, 2024</div>
+                        </div>
+                        <div class="amount positive">+$245.18</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 MCP-SecureBank. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Check authentication on page load
+        function checkAuth() {
+            const authCookie = document.cookie
+                .split('; ')
+                .find(row => row.startsWith('auth='));
+            
+            if (!authCookie) {
+                alert('Please log in to access the dashboard.');
+                window.location.href = 'login.html';
+                return false;
+            }
+            return true;
+        }
+
+        // Dashboard functions
+        function transfer() {
+            alert('Transfer feature would be implemented here.\nFlag found: MCP{tr4nsf3r_fun3t10n_fl4g}');
+            console.log("Transfer function called - check for hidden functionality!");
+        }
+
+        function payBills() {
+            alert('Bill payment system would be here.\nThis is a demo environment.');
+        }
+
+        function checkCredit() {
+            alert('Credit Score: 785 (Excellent)\nThis feature is under development.');
+        }
+
+        function support() {
+            alert('Support chat would open here.\nFor demo purposes only.');
+        }
+
+        function logout() {
+            document.cookie = "auth=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+            alert('Logged out successfully!');
+            window.location.href = 'index.html';
+        }
+
+        // Check authentication when page loads
+        window.addEventListener('load', function() {
+            if (!checkAuth()) return;
+            
+            console.log("💻 Dashboard loaded successfully!");
+            console.log("💻 Try exploring the dashboard functions...");
+            console.log("💻 Some features might contain hidden flags!");
+            
+            // Hidden functionality
+            setTimeout(() => {
+                console.log("💻 Bonus tip: Try calling the secret functions!");
+                console.log("Functions available: transfer(), getAccountDetails(), debugMode()");
+            }, 3000);
+        });
+
+        // Hidden functions for discovery
+        function getAccountDetails() {
+            console.log("💻 Account Details Retrieved:");
+            console.log("💻 Primary Account: 1234-5678-9012-3456");
+            console.log("💻 Account Type: Premium Business");
+            console.log("💻 Credit Limit: $50,000");
+            console.log("💻 Hidden flag: MCP{4cc0unt_d3t41ls_r3v34l3d}");
+            return "Account details logged to console";
+        }
+
+        function debugMode() {
+            console.log("🔧 Debug Mode Activated");
+            console.log("Application Version: 2.1.4-beta");
+            console.log("User Role: Administrator");
+            console.log("Session ID: sess_" + Math.random().toString(36).substr(2, 9));
+            console.log("💻 Debug flag: MCP{d3bug_m0d3_4ct1v4t3d}");
+        }
+
+        // Secret keyboard shortcut
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && e.altKey && e.key === 'd') {
+                debugMode();
+                alert('🔧 Debug mode activated! Check console for details.');
+            }
+        });
+    </script>
+</body>
+</html>
